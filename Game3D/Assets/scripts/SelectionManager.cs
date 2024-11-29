@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class SelectionManager : MonoBehaviour
 {
+    public static SelectionManager instance { get; set; }
+
+    public bool onTarget;
 
     public GameObject interaction_Info_UI;
     Text interaction_text;
@@ -13,6 +16,19 @@ public class SelectionManager : MonoBehaviour
     private void Start()
     {
         interaction_text = interaction_Info_UI.GetComponent<Text>();
+        onTarget = false;
+    }
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
     }
 
     void Update()
@@ -23,16 +39,27 @@ public class SelectionManager : MonoBehaviour
         {
             var selectionTransform = hit.transform;
 
-            if (selectionTransform.GetComponent<InteractableObject>())
+            InteractableObject Interactable = selectionTransform.GetComponent<InteractableObject>();
+
+            if (Interactable && Interactable.PlayerInRange)
             {
-                interaction_text.text = selectionTransform.GetComponent<InteractableObject>().GetItemName();
+                onTarget = true;
+
+                interaction_text.text = Interactable.GetItemName();
                 interaction_Info_UI.SetActive(true);
+
             }
             else
             {
+                onTarget= false; 
                 interaction_Info_UI.SetActive(false);
             }
 
+        }
+        else
+        {
+            onTarget = false;
+            interaction_Info_UI.SetActive(false);
         }
     }
 }
