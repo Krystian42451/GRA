@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class InteractableObject : MonoBehaviour
 {
-    
-    
+
+
     public string ItemName;
     public bool PlayerInRange;
 
@@ -19,13 +19,28 @@ public class InteractableObject : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) && PlayerInRange && SelectionManager.instance.onTarget)
         {
-            Debug.Log("podniesiono obiekt");
-            Destroy(gameObject);
+            if (!InventorySystem.Instance.CheckifFull())
+            {
+                InventorySystem.Instance.AddToInventory(ItemName);
+                Destroy(gameObject);
+            }
+            else
+            {
+                Debug.Log("ekwipunek jest pelen");
+            }
+
+
         }
+
+
+
+
+
+
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") )
+        if (other.CompareTag("Player"))
         {
             PlayerInRange = true;
         }
@@ -33,9 +48,10 @@ public class InteractableObject : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") )
+        if (other.CompareTag("Player"))
         {
             PlayerInRange = false;
         }
     }
+
 }
