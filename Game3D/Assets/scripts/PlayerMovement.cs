@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     public float crouchSpeed = 3f; // Prêdkoœæ podczas kucania
     public float crouchHeight = 0.5f; // Wysokoœæ postaci podczas kucania
 
+    
+
     public int damageToInflict = 20;
     Vector3 velocity;
 

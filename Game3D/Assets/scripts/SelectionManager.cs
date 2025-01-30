@@ -41,6 +41,10 @@ public class SelectionManager : MonoBehaviour
 
             InteractableObject Interactable = selectionTransform.GetComponent<InteractableObject>();
 
+            
+
+
+
             if (Interactable && Interactable.PlayerInRange)
             {
                 onTarget = true;
@@ -61,5 +65,7 @@ public class SelectionManager : MonoBehaviour
             onTarget = false;
             interaction_Info_UI.SetActive(false);
         }
+
+        
     }
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Slot
   - Waypoints
+  - Target
   layers:
   - Default
   - TransparentFX
