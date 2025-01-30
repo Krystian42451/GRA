@@ -364,6 +364,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stopAttackingDistance: 4.1
+  attackRate: 1
+  damageToInflict: 5
 --- !u!1101 &6002564492009120051
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

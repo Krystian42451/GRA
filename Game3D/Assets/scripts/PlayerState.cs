@@ -5,11 +5,15 @@ using UnityEngine;
 
 public class PlayerState : MonoBehaviour
 {
-    public static PlayerState Instance { get; private set; }
+    public static PlayerState Instance { get; set; }
 
     // -------- Player Health -------- //
     public float currentHealth;
     public float maxHealth;
+
+    float distanceTravelled = 0;
+    Vector3 lastPosition;
+    public GameObject playerBody;
 
     void Awake()
     {
@@ -73,4 +77,18 @@ public class PlayerState : MonoBehaviour
     {
         return currentHealth <= 0;
     }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0)
+        {
+            Debug.Log("Player is dead");
+        }
+        else
+        {
+            Debug.Log("Player is hurt");
+        }
+    }
+
 }

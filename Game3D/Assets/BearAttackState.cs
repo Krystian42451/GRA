@@ -13,6 +13,10 @@ public class BearAttackState : StateMachineBehaviour
 
     public float stopAttackingDistance = 2.5f;
 
+    public float attackRate = 1f;
+    private float attackTimer;
+    public int damageToInflict = 5;
+
     //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -26,6 +30,16 @@ public class BearAttackState : StateMachineBehaviour
     {
         LookAtPlayer();
 
+        if (attackTimer<=0)
+        {
+            Attack();
+            attackTimer = 1f / attackRate;
+        }
+        else
+        {
+            attackTimer -= Time.deltaTime;
+        }
+
         float distanceFromPlayer = Vector3.Distance(player.position, animator.transform.position);
         if (distanceFromPlayer > stopAttackingDistance)
         {
@@ -34,9 +48,12 @@ public class BearAttackState : StateMachineBehaviour
 
     }
 
-    
 
-    
+
+    private void Attack()
+    {
+        PlayerState.Instance.TakeDamage(damageToInflict);
+    }
 
     private void LookAtPlayer()
     {
