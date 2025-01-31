@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class fire : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnCollisionEnter(Collision collision)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (collision.gameObject.CompareTag("Target"));
+        {
+            print("hit" + collision.gameObject.name + "!");
+            Destroy(gameObject);
+        }
     }
 }

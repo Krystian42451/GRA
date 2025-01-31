@@ -10866,7 +10866,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 100
-  playerBody: {fileID: 0}
+  playerBody: {fileID: 309315685}
 --- !u!4 &1622711886
 Transform:
   m_ObjectHideFlags: 0
